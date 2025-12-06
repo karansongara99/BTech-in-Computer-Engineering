@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Events</title>
+</head>
+<body>
+    <button id="left" onclick="handleLeftClick()">Left Click</button>
+    <button id="right" onclick="handleRightClick()">Right Click</button>
+
+    <script>
+        function handleLeftClick() {
+            document.getElementById("left").innerHTML = "Left click detected";
+            document.getElementById("left").style.backgroundColor = "lightblue";
+        }
+        function handleRightClick(event) {
+            // event.preventDefault(); 
+            document.getElementById("right").innerHTML = "Right click detected";
+            document.getElementById("right").style.backgroundColor = "lightgreen";
+        }
+    </script>
+</body>
+</html>

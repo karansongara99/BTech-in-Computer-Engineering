@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical-3</title>
+</head>
+
+<body>
+    <label for="">Name:</label>
+    <input type="text" onkeypress="keyeve('onkeypress')"><br><br>
+    <label for="">Rollno:</label>
+    <input type="text" onkeydown="keyeve('onkeydown')"><br><br>
+    <label for="">Semster:</label>
+    <input type="text" onkeyup="keyeve('onkeyup')">
+    <p id="event"></p>
+    <script>
+        function keyeve(e) {    
+            document.getElementById("event").innerText = e;
+        }
+    </script>
+</body>
+
+</html>

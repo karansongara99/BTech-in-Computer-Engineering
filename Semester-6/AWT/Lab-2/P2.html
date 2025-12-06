@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical-2</title>
+</head>
+
+<body>
+    <p id="text1" onmousedown="mouevent('onmousedown')">XYZ</p>
+    <p id="text2" onmouseenter="mouevent('onmouseenter')">ABC</p>
+    <p id="text3" onmousemove="mouevent('onmousemove')">UNIVERSITY</p>
+    <p id="text4" onmouseleave="mouevent('onmouseleave')">WEB DEVELOP</p>
+    <p id="text5" onmouseout="mouevent('onmouseout')">WEB</p>
+    <p id="text6" onmouseup="mouevent('onmouseup')">URTR</p>
+    <p id="text7" ondblclick="mouevent('ondblclick')">TYTRFYHH</p>
+    <p id="event"></p>
+    <script>
+        function mouevent(e) {
+            document.getElementById("event").innerText = e;
+        }
+    </script>
+</body>
+
+</html>

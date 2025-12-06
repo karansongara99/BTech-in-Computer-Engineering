@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical-4</title>
+</head>
+
+<body>
+    <form action="">
+        <label for="">Focus:</label>
+        <input type="text" id="myevent" onfocus="focusFunction()"><br><br>
+        <label for="">Blur:</label>
+        <input type="text" id="myevent1" onblur="blurfunction()"><br><br>
+        <label for="">Searching Function:</label>
+        <input type="text" id="myevent2" onfocus="onfocusfunction()">
+        <p id="demo"></p>
+        <label for="">Select Function</label>
+        <input type="text" value="Select me!!" onselect="onelectfunction()"><br><br>
+        <label for="">Reset Function</label>
+        <input type="text" id="myevent3" onreset="onresetfunction()">
+        <input type="reset" onclick="onresetfunction()"><br><br>
+        <label for="">Input Function</label>
+        <input type="text" id="myevent4" oninput="oninputfunction()">
+        <p id="rint"></p>
+        <script>
+            function focusFunction() {
+                document.getElementById("myevent").style.background = "yellow";
+            }
+
+            function blurfunction() {
+                document.getElementById("myevent1").style.background = "red";
+            }
+
+            function onfocusfunction() {
+                let x = document.getElementById("myevent");
+                document.getElementById("demo").innerHTML = "You are searching for: " + x.value;
+            }
+
+            function onelectfunction() {
+                alert('There are Selected Text')
+            }
+
+            function onresetfunction() {
+                alert('Please Resert Value')
+            }
+
+            function oninputfunction() {
+                let a = document.getElementById("myevent4").value;
+                document.getElementById("rint").innerHTML = " Your Inputr There " + a;
+
+            }
+        </script>
+    </form>
+</body>
+
+</html>

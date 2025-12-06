@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD Operation</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .outer {
+        margin: 80px;
+        padding: 10px;
+        border: 2px solid black;
+        width: 500px;
+        height: 500px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      tr,
+      td,
+      th {
+        border: 2px solid black;
+        padding: 10px;
+        text-align: center;
+      }
+
+      button,
+      input {
+        padding: 5px;
+        margin: 40px;
+      }
+
+      #displaytable {
+        margin: 10px;
+        padding: 10px;
+      }
+
+      input[type="text"] {
+        margin: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <h1>CRUD OPERATION</h1>
+      <input type="text" id="display" />
+      <button onclick="addItems()">Add Item</button>
+
+      <table id="displaytable"></table>
+      <script>
+        let items = [];
+
+        function addItems() {
+          let adds = document.getElementById("display").value;
+          items.push(adds);
+          displayItems();
+        }
+
+        function displayItems() {
+          let table = document.getElementById("displaytable");
+          table.innerHTML = `<tr>
+                        <th>Index</th>
+                        <th>Item Name</th>
+                        <th>Actions</th>
+                    </tr>`;
+
+          items.forEach((items, index) => {
+            table.innerHTML += `<tr>
+                        <td>${index}</td>
+                        <td>${items}</td>
+                        <td><button onclick="deleteItem(${index})">Delete</button>
+                            <button onclick="editItems(${index})">Update</button>
+                            </td>
+
+                    </tr>`;
+          });
+        }
+
+        function editItems(index) {
+          let edit = prompt("Enter new item");
+          items[index] = edit;
+          displayItems();
+        }
+
+        function deleteItem(index) {
+          if (confirm("Are You Sure Deleted")) {
+            items.splice(index, 1);
+            displayItems();
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>
