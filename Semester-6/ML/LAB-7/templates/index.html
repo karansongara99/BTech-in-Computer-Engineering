@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Diabetes Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+    <div class="container py-5">
+      <h1 class="mb-4">Diabetes Prediction</h1>
+      <p>Enter the features and click <strong>Predict</strong>.</p>
+
+      <form id="predict-form" action="/result" method="post">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Glucose</label>
+            <input name="Glucose" type="number" step="any" class="form-control" placeholder="e.g., 120">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">BMI</label>
+            <input name="BMI" type="number" step="any" class="form-control" placeholder="e.g., 30.5">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Age</label>
+            <input name="Age" type="number" step="1" class="form-control" placeholder="e.g., 45">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Diabetes Pedigree Function</label>
+            <input name="DiabetesPedigreeFunction" type="number" step="any" class="form-control" placeholder="e.g., 0.5">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Insulin</label>
+            <input name="Insulin" type="number" step="any" class="form-control" placeholder="e.g., 120">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Pregnancies</label>
+            <input name="Pregnancies" type="number" step="1" class="form-control" placeholder="e.g., 2">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">BloodPressure</label>
+            <input name="BloodPressure" type="number" step="any" class="form-control" placeholder="e.g., 70">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">SkinThickness</label>
+            <input name="SkinThickness" type="number" step="any" class="form-control" placeholder="e.g., 20">
+          </div>
+
+        </div>
+
+        <div class="mt-4">
+          <button id="predict-btn" type="submit" class="btn btn-primary">Predict</button>
+          <button id="predict-ajax" type="button" class="btn btn-outline-secondary">Predict (AJAX)</button>
+        </div>
+      </form>
+
+      <hr class="my-4">
+
+      <div id="ajax-result" style="display: none;" class="alert mt-3"></div>
+    </div>
+
+    <script>
+      document.getElementById('predict-ajax').addEventListener('click', async () => {
+        const form = document.getElementById('predict-form');
+        const data = {};
+        new FormData(form).forEach((v,k)=> data[k] = v);
+
+        const res = await fetch('/predict', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const json = await res.json();
+        const el = document.getElementById('ajax-result');
+        el.style.display = 'block';
+        if (json.error) {
+          el.className = 'alert alert-danger';
+          el.textContent = json.error;
+        } else {
+          el.className = 'alert alert-success';
+          el.innerHTML = `<strong>Prediction:</strong> ${json.label} (${json.prediction})` +
+                         (json.probability ? ` <br><strong>Confidence:</strong> ${(json.probability*100).toFixed(2)}%` : '');
+        }
+      });
+    </script>
+  </body>
+</html>
